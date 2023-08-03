@@ -1,14 +1,13 @@
 # Relational Database Normalization; A Normalization Guide
 
 Database normalization is a process that involves organizing the data in a relational database to minimize redundancy and improve data integrity. It helps maintain data consistency and reduces the risk of data anomalies. There are several normal forms that a database can be normalized into, each with its own set of rules. 
-In this guide, we will explore the first three normal forms (1NF, 2NF, and 3NF) with examples at each step, and briefly cover BCNF.
+In this guide, we will explore the first three normal forms (1NF, 2NF, and 3NF) with examples at each step.
 
 ## Table of Contents
    - [Introduction](#intro)
 1. [First Normal Form (1NF)](#1nf)
 2. [Second Normal Form (2NF)](#2nf)
 3. [Third Normal Form (3NF)](#3nf)
-4. [Boyce Normal Form](#bncf)
 
 ## Introduction <a name='intro'></a>
 Database normalization is a technique used to design efficient and robust databases by reducing data redundancy. It involves breaking down a large table into smaller, related tables that can be linked using relationships. By doing so, we ensure that each piece of data is stored in only one place, reducing the chances of inconsistency and update anomalies.
@@ -59,12 +58,6 @@ Original Table - Order_Details
 | 1002     | 1          | Laptop       | 1        |
 
 Normalized Tables:
-Table - Orders
-| Order_ID |
-|----------|
-| 1001     |
-| 1002     |
-
 Table - Products
 | Product_ID | Product_Name |
 |------------|--------------|
@@ -85,18 +78,25 @@ In the third normal form, the table should be in 2NF, and no non-key attribute s
 
 ### Example:
 Original Table - Student_Courses
-| Student_ID | Course_ID | Course_Name | Instructor    |
-|------------|-----------|-------------|---------------|
-| 101        | 1         | Math        | Prof. Smith   |
-| 101        | 2         | Science     | Prof. Johnson |
-| 102        | 1         | Math        | Prof. Smith   |
+| Student_ID | Student_Name | Course_ID | Course_Name | Instructor    |
+|------------|--------------|-----------|-------------|---------------|
+| 101        | Jamie        | 1         | Math        | Prof. Smith   |
+| 101        | Jamie        | 2         | Science     | Prof. Johnson |
+| 102        | Carlson      | 1         | Math        | Prof. Smith   |
 
 Normalized Tables:
 Table - Students
-| Student_ID |
-|------------|
-| 101        |
-| 102        |
+| Student_ID | Student_Name |
+|------------|--------------|
+| 101        | Jamie        |
+| 102        | Carlson      |
+
+Table - Student Enrollemnt
+| Enrollment_id | Student_ID | Course_ID |
+|---------------|------------|-----------|
+| 1             | 101        | 1         |
+| 2             | 101        | 2         |
+| 3             | 102        | 1         |
 
 Table - Courses
 | Course_ID | Course_Name |
@@ -111,10 +111,4 @@ Table - Course_Instructors
 | 2         | Prof. Johnson |
 
 
-
-## 3. Boyce Normal Form (BNF)<a name='bnf'></a>
-### Rules:
-1. The only kinds of multuvalued dependendy allowde din tghe table are multivalued dependencies on the key
-2. Do
-3. Do
 
